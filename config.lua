@@ -66,6 +66,13 @@ lvim.builtin.which_key.mappings["C"] = {
   c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose env" },
 }
 
+lvim.builtin.which_key.mappings["F"] = {
+  name = "Spectre",
+  f = { "<cmd>lua require('spectre').open()<CR>", "Spectre" },
+  w = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", "Search current word" },
+  p = { "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>", "Search current file" },
+}
+
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -175,9 +182,15 @@ lvim.plugins = {
       vim.fn["mkdp#util#install"]()
     end,
   },
-  { "catppuccin/nvim",                 as = "catppuccin" },
+  { "catppuccin/nvim",                 name = "catppuccin" },
   { "AckslD/swenv.nvim" },
-  { "stevearc/dressing.nvim" }
+  {
+    "windwp/nvim-spectre",
+    event = "BufRead",
+    config = function()
+      require("spectre").setup()
+    end,
+  }, { "stevearc/dressing.nvim" }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
