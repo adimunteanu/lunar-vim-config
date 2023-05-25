@@ -119,6 +119,7 @@ lvim.builtin.treesitter.highlight.enable = true
 -- ---@usage disable automatic installation of servers
 -- lvim.lsp.installer.setup.automatic_installation = false
 require("lvim.lsp.manager").setup("angularls")
+require("lvim.lsp.manager").setup("emmet_ls")
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
