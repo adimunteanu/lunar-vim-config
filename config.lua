@@ -74,6 +74,13 @@ lvim.builtin.which_key.mappings["F"] = {
   p = { "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>", "Search current file" },
 }
 
+lvim.builtin.which_key.mappings["bo"] = {
+  "<cmd>:Other<CR>", "Open Other and switch buffer"
+}
+
+lvim.builtin.which_key.mappings["bv"] = {
+  "<cmd>:OtherVSplit<CR>", "Open Other in vertical split"
+}
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -205,7 +212,7 @@ lvim.plugins = {
     config = function()
       require("dap-vscode-js").setup({
         -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
-        debugger_path = "/Users/adrian/.local/share/lunarvim/site/pack/lazy/opt/vscode-js-debug", -- Path to vscode-js-debug installation.
+        debugger_path = "/Users/adrian/.local/share/lunarvim/site/pack/lazy/opt/vscode-js-debug",    -- Path to vscode-js-debug installation.
         -- debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
         adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
         -- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
@@ -230,6 +237,34 @@ lvim.plugins = {
           }
         }
       end
+    end
+  },
+  {
+    "rgroli/other.nvim",
+    config = function()
+      require("other-nvim").setup({
+        mappings = {
+          -- builtin mappings
+          "angular",
+          "golang",
+          -- custom mapping
+        },
+        style = {
+          -- How the plugin paints its window borders
+          -- Allowed values are none, single, double, rounded, solid and shadow
+          border = "solid",
+
+          -- Column seperator for the window
+          seperator = "|",
+
+          -- width of the window in percent. e.g. 0.5 is 50%, 1.0 is 100%
+          width = 0.7,
+
+          -- min height in rows.
+          -- when more columns are needed this value is extended automatically
+          minHeight = 2
+        },
+      })
     end
   }
 }
